@@ -11,10 +11,10 @@ This project is designed especially for **beginners** who are frustrated by manu
 
 You only need to run a few commands:
 
-git clone https://github.com/Pushpenderrathore/tor-browser
-cd tor-browser
-sudo chmod +x ./install.sh
-./install.sh
+* git clone https://github.com/Pushpenderrathore/tor-browser
+* cd tor-browser
+* sudo chmod +x ./install.sh
+* ./install.sh
 
 ---
 
