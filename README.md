@@ -1,6 +1,7 @@
 # Tor Browser Auto-Installer 🧠
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Last Commit](https://img.shields.io/github/last-commit/Pushpenderrathore/LUKS2-nuke) 
 
 A simple and effective Bash script to automatically install the **Tor Browser** on Linux systems.
 This project is designed especially for **beginners** who are frustrated by manual installation steps.
