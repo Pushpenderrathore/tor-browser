@@ -2,6 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Last Commit](https://img.shields.io/github/last-commit/Pushpenderrathore/LUKS2-nuke) 
+![Repo Size](https://img.shields.io/github/repo-size/Pushpenderrathore/tor-browser)
+![Stars](https://img.shields.io/github/stars/Pushpenderrathore/tor-browser?style=social)
+![Forks](https://img.shields.io/github/forks/Pushpenderrathore/tor-browser?style=social)
+![Issues](https://img.shields.io/github/issues/Pushpenderrathore/tor-browser)
+
 
 A simple and effective Bash script to automatically install the **Tor Browser** on Linux systems.
 This project is designed especially for **beginners** who are frustrated by manual installation steps.
