@@ -21,6 +21,7 @@ This repository provides a robust Bash script to install the [Tor Browser](https
 ### 1. Clone the repository
 
 git clone https://github.com/Pushpenderrathore/tor-browser.git
+
 cd tor-browser
 
 ### 2. Make the script executable
