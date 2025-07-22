@@ -1,5 +1,8 @@
 # 🧅 Tor Browser Installer Script
 
+![License](https://img.shields.io/badge/license-MIT-green) 
+![Last Commit](https://img.shields.io/github/last-commit/Pushpenderrathore/LUKS2-nuke)
+
 This repository provides a robust Bash script to install the [Tor Browser](https://www.torproject.org/) on Linux systems. It ensures reliable downloading using `wget` or `curl`, handles permission issues, creates a system-wide symlink, and cleans up after installation.
 
 ---
