@@ -1,18 +1,55 @@
-#!/bin/bash 
+#!/bin/bash
 
-#Download 
-wget https://www.torproject.org/dist/torbrowser/14.5.4/tor-browser-linux-x86_64-14.5.4.tar.xz 
+TOR_URL="https://www.torproject.org/dist/torbrowser/14.5.4/tor-browser-linux-x86_64-14.5.4.tar.xz"
+TOR_FILE="tor-browser-linux-x86_64-14.5.4.tar.xz"
 
-#Extract 
-tar -xf tor-browser-linux-x86_64-14.5.4.tar.xz 
+download_with_wget() {
+    echo "📦 Trying to download using wget..."
+    wget "$TOR_URL" -O "$TOR_FILE"
+    return $?
+}
 
-# Make executable 
-chmod +x tor-browser/Browser/start-tor-browser 
+download_with_curl() {
+    echo "📦 Trying to download using curl..."
+    curl -L "$TOR_URL" -o "$TOR_FILE"
+    return $?
+}
 
-# Create symlink 
-sudo ln -sf "$(pwd)/tor-browser/Browser/start-tor-browser" /usr/local/bin/tor-browser 
+# Attempt to download
+if command -v wget &> /dev/null; then
+    download_with_wget || {
+        echo "⚠️ wget failed. Falling back to curl..."
+        if command -v curl &> /dev/null; then
+            download_with_curl || { echo "❌ curl also failed."; exit 1; }
+        else
+            echo "❌ curl is not installed either."
+            exit 1
+        fi
+    }
+elif command -v curl &> /dev/null; then
+    download_with_curl || { echo "❌ curl failed."; exit 1; }
+else
+    echo "❌ Neither wget nor curl is installed. Attempting to install curl..."
+    if command -v pacman &> /dev/null; then
+        sudo pacman -Sy --noconfirm curl
+    elif command -v apt &> /dev/null; then
+        sudo apt update && sudo apt install -y curl
+    else
+        echo "❌ Could not detect package manager to install curl."
+        exit 1
+    fi
+    download_with_curl || { echo "❌ Download failed after installing curl."; exit 1; }
+fi
 
-# Cleanup 
-rm tor-browser-linux-x86_64-14.5.4.tar.xz 
+# Extract and install
+if [ -f "$TOR_FILE" ]; then
+    tar -xf "$TOR_FILE" || { echo "❌ Extraction failed."; exit 1; }
+    chmod +x tor-browser/Browser/start-tor-browser
+    sudo ln -sf "$(pwd)/tor-browser/Browser/start-tor-browser" /usr/local/bin/tor-browser
+    rm "$TOR_FILE"
+    echo "✅ Tor Browser installed. Run with: tor-browser"
+else
+    echo "❌ Downloaded file not found."
+    exit 1
+fi
 
-echo "✅ Tor Browser installed. Run with: tor-browser" 
