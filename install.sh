@@ -49,7 +49,18 @@ fi
 if [ -f "$TOR_FILE" ]; then
     tar -xf "$TOR_FILE" || { echo "❌ Extraction failed."; exit 1; }
     chmod +x tor-browser/Browser/start-tor-browser
-    sudo ln -sf "$(pwd)/tor-browser/Browser/start-tor-browser" /usr/local/bin/tor-browser
+
+    # Move to a stable location
+    sudo mkdir -p /opt/tor-browser
+    sudo cp -r tor-browser/* /opt/tor-browser/
+
+    # Set proper permissions
+    sudo chown -R root:root /opt/tor-browser
+    sudo chmod -R 755 /opt/tor-browser
+
+    # Create symlink to executable
+    sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/local/bin/tor-browse/
+
     rm "$TOR_FILE"
     echo "✅ Tor Browser installed. Run with: tor-browser"
 else
