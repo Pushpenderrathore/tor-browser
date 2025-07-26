@@ -1,7 +1,7 @@
 #!/bin/bash
 
-TOR_URL="https://www.torproject.org/dist/torbrowser/14.5.4/tor-browser-linux-x86_64-14.5.4.tar.xz"
-TOR_FILE="tor-browser-linux-x86_64-14.5.4.tar.xz"
+TOR_URL="https://www.torproject.org/dist/torbrowser/14.5.5/tor-browser-linux-x86_64-14.5.5.tar.xz"
+TOR_FILE="tor-browser-linux-x86_64-14.5.5.tar.xz"
 
 download_with_wget() {
     echo "📦 Trying to download using wget..."
