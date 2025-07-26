@@ -1,7 +1,11 @@
 #!/bin/bash
 
-TOR_URL="https://www.torproject.org/dist/torbrowser/14.5.5/tor-browser-linux-x86_64-14.5.5.tar.xz"
-TOR_FILE="tor-browser-linux-x86_64-14.5.5.tar.xz"
+# Auto-fetch latest Tor Browser version for Linux 64-bit
+LATEST_VERSION=$(curl -s https://dist.torproject.org/torbrowser/ | grep -oP 'href="([0-9]+\.[0-9]+\.[0-9]+)/"' | sort -V | tail -1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')
+
+# Define file and URL dynamically
+TOR_FILE="tor-browser-linux-x86_64-${LATEST_VERSION}.tar.xz"
+TOR_URL="https://www.torproject.org/dist/torbrowser/${LATEST_VERSION}/${TOR_FILE}"
 
 download_with_wget() {
     echo "📦 Trying to download using wget..."
@@ -52,4 +56,3 @@ else
     echo "❌ Downloaded file not found."
     exit 1
 fi
-
