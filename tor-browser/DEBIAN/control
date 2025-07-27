@@ -1,4 +1,4 @@
-Package: tor-browser-installer
+Package: tor-browser
 Version: 1.0
 Section: net
 Priority: optional
