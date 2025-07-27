@@ -1,0 +1,9 @@
+Package: tor-browser-installer
+Version: 1.0
+Section: net
+Priority: optional
+Architecture: all
+Maintainer: Pushpender Singh <your.email@example.com>
+Description: A custom Tor Browser installer for Linux
+ This package installs Tor Browser to /opt/tor-browser and creates a launcher at /usr/local/bin/tor-browser.
+ It includes auto-download, setup, permission fix, and clean uninstall.
