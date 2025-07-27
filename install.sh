@@ -51,15 +51,16 @@ if [ -f "$TOR_FILE" ]; then
     chmod +x tor-browser/Browser/start-tor-browser
 
     # Move to a stable location
+    sudo rm -rf /opt/tor-browser
     sudo mkdir -p /opt/tor-browser
     sudo cp -r tor-browser/* /opt/tor-browser/
 
     # Set proper permissions
-    sudo chown -R root:root /opt/tor-browser
+    sudo chown -R $(logname):$(logname) /opt/tor-browser
     sudo chmod -R 755 /opt/tor-browser
 
     # Create symlink to executable
-    sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/local/bin/tor-browse/
+    sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/local/bin/tor-browser
 
     rm "$TOR_FILE"
     echo "✅ Tor Browser installed. Run with: tor-browser"
