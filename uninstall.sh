@@ -1,23 +1,31 @@
 #!/bin/bash
 
-# Define installation directory
-INSTALL_DIR="$HOME/tor-browser"
+INSTALL_DIR="/opt/tor-browser"
+SYMLINK="/usr/local/bin/tor-browser"
+DESKTOP_FILE="$HOME/.local/share/applications/tor-browser.desktop"
 
-# Check if Tor Browser is installed
+# Remove installation directory
 if [ -d "$INSTALL_DIR" ]; then
     echo "🧹 Removing Tor Browser from $INSTALL_DIR..."
-    rm -rf "$INSTALL_DIR"
-    echo "✅ Tor Browser has been removed."
+    sudo rm -rf "$INSTALL_DIR"
+    echo "✅ Tor Browser directory removed."
 else
-    echo "⚠️ No Tor Browser installation found in $INSTALL_DIR."
+    echo "⚠️ No Tor Browser installation found at $INSTALL_DIR."
 fi
 
-# Optional: remove desktop shortcut if it was created
-DESKTOP_FILE="$HOME/.local/share/applications/tor-browser.desktop"
+# Remove symlink
+if [ -L "$SYMLINK" ]; then
+    echo "🧹 Removing symlink at $SYMLINK..."
+    sudo rm -f "$SYMLINK"
+    echo "✅ Symlink removed."
+fi
+
+# Remove desktop shortcut
 if [ -f "$DESKTOP_FILE" ]; then
-    echo "🧹 Removing Tor Browser desktop shortcut..."
+    echo "🧹 Removing desktop shortcut..."
     rm -f "$DESKTOP_FILE"
     echo "✅ Desktop shortcut removed."
 fi
 
 echo "🧼 Uninstallation complete."
+
