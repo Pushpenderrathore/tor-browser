@@ -1,5 +1,5 @@
 Package: tor-browser
-Version: 1.0
+Version: v14.5.6
 Section: net
 Priority: optional
 Architecture: all
